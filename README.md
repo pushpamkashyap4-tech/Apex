@@ -1,0 +1,35 @@
+# Apex JEE Advanced
+
+React single-page app bundled with Vite, with same-origin Node.js functions in `api/` for Vercel.
+
+## Local development
+
+Use Node.js 20.19+ and npm:
+
+```sh
+npm install
+cp .env.example .env.local
+npm run dev
+```
+
+`npm run dev` starts the Vite frontend. Use `npm run dev:vercel` to run the Vercel CLI with local `/api/*` functions. Put any server-side provider credentials in `.env.local`.
+
+## Production deployment
+
+Import the Git repository into Vercel with the project root as the root directory. The repository config runs `npm run build`, publishes `dist/`, and discovers the Node.js functions in `api/`.
+
+Set any server-side provider credentials in Vercel Project Settings → Environment Variables:
+
+- `GROQ_API_KEY`
+- `GEMINI_API_KEY`
+
+The app also supports user-owned API keys saved in its Settings. The browser sends requests to same-origin `/api/*` handlers; provider credentials configured in Vercel remain server-side. Image search uses a same-origin function that queries Wikimedia Commons.
+
+## Available commands
+
+- `npm run dev` — Vite frontend server
+- `npm run dev:vercel` — Vercel local development server, including API functions
+- `npm run dev:vite` — Vite frontend server
+- `npm run build` — production bundle in `dist/`
+- `npm run preview` — serve the production bundle locally
+- `npm run audit:recall` — audit study data math using the locally installed KaTeX package
